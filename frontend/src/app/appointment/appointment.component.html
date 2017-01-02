@@ -1,0 +1,13 @@
+<h1>
+  Appointments
+</h1>
+<table>
+  <tr *ngFor="let day of appointmentDays">
+    <td>
+      {{day}}
+    </td>
+    <td>
+      {{appointments[day]}}
+    </td>
+  </tr>
+</table>

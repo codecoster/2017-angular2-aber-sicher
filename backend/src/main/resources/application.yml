@@ -1,0 +1,21 @@
+---
+spring:
+  profiles: default
+server:
+    port: 9000
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:8081/auth/realms/master/protocol/openid-connect/token
+      userAuthorizationUri: http://localhost:8081/auth/realms/master/protocol/openid-connect/auth
+      clientId: service
+      clientSecret: "6e597ac6-422a-4582-9f88-f38ca7f98d11"
+    resource:
+      userInfoUri: http://localhost:8081/auth/realms/master/protocol/openid-connect/userinfo
+      jwt:
+        keyValue:
+          -----BEGIN PUBLIC KEY-----
+          MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAy5b3tTKsQ2tsCIbYuu8P0+B5sx+AfKnmFnLEBmQBb1+FR5vVaMQzhtWlwjjnW3gDKkgO2JPNBSXO7BxYg2zvduyR8JXcERzia3+KBB3DNSWQAzai144HfdWmtXGvHa+W31c6tJZyr/kNPzxxsmgoTy4DrRf6tcl+HmBFfAltrXVOO8l7PrPbh/JztRfLDMxDKjs/3FxuRs1C3okdawZZkepJHEkY1eInHz8CNg2wvP/HNSReQo0c+5/gJc+q+XlmKiC6sXHkJ0GQl5mVXCj6XpJRbEaHHBC5U7wQ9bDc478nYM5/IF+ZzBXH2PbMZ/vIo0IzVT0QJ1hsYOFTcSlMEVYcrPvLz/3bp1jrFEU75g66kgyBZNNll4djLZ+BFRUL6VPCIki5t0lKsQBClXLYooYwzBrYglpm4L4DC39W9WaMnJiIz0ANJFBkYfRkghPJFdwA56FLyL5hycqN0s6Aa4nn7jil/Ta3XfN14pVXQCGwmzDOjVercm6UkDPac7CYhFxnk0wRAxpiPwNpu7YsJnDPUXx5yFhbQ6dFbVcPeLlxX0dUE4ggsYe1dgWcJ8xfVn8ax4QVRuQE2q6d2AjMfCGbpax2lqe+s+4IJP/6fKfboNg8kDriHfBvPHj6H/oPIAYVg7CExvu9mMUXUBx+6FsW/H+HuA4bpFAqPD7YMcECAwEAAQ==
+          -----END PUBLIC KEY-----
+      id: backend
+serviceId: ${PREFIX:}resource

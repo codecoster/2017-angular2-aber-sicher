@@ -1,0 +1,10 @@
+FROM jboss/keycloak:2.3.0.Final
+
+COPY keycloak.h2.db /opt/jboss/keycloak/standalone/data/keycloak.h2.db
+COPY keycloak.trace.db /opt/jboss/keycloak/standalone/data/keycloak.trace.db
+
+USER root
+
+RUN chown -R jboss:jboss /opt/jboss/keycloak/standalone/data
+
+USER jboss

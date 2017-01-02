@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.main {
+  flex: 1;
+}
+
+.top-bar{
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+.top-bar, .top-bar ul, footer{
+  background-color: rgb(42,56,52);
+}
+.top-bar li, .footer{
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+.top-bar li, .top-bar a, footer{
+  color: rgb(234,230,226);
+}

@@ -1,0 +1,43 @@
+version: '2'
+services:
+  # docker exec -ti docker_auth_1 /bin/bash
+  # cd keycloak && ./bin/standalone.sh -Djboss.socket.binding.port-offset=100 -Dkeycloak.migration.action=export -Dkeycloak.migration.strategy=OVERWRITE_EXISTING -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=config-export.json
+
+  auth:
+    image: jboss/keycloak
+    build:
+      context: .
+      dockerfile: Dockerfile-keycloak
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+     - "8080:8080"
+
+  # docker-compose -f docker/docker-compose.yml up --build --force-recreate spring-boot
+  spring-boot:
+    image: maven:alpine
+    depends_on:
+      - auth
+    volumes:
+      - ../backend:/home/backend
+    working_dir: /home/backend
+    command: sh -c "mvn spring-boot:run"
+    ports:
+      - "9000:9000"
+
+  frontend-build:
+    image: suchja/angular-cli-docker
+    command: sh -c "rm -rf serve/*; npm install && ng build && cp -a dist/* serve/"
+    volumes:
+      - ../frontend:/home/app
+  frontend:
+    depends_on:
+      - frontend-build
+      - auth
+      - spring-boot
+    image: httpd:alpine
+    volumes:
+     - ../frontend/serve:/usr/local/apache2/htdocs
+    ports:
+     - "4200:80"

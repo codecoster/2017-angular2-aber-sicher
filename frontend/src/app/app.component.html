@@ -1,0 +1,50 @@
+<div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li routerLink="/home" routerLinkActive="menu-text">
+          <a>Home</a>
+        </li>
+        <li routerLink="/account" routerLinkActive="menu-text">
+          <a>Account</a>
+        </li>
+        <li routerLink="/appointments" routerLinkActive="menu-text">
+          <a>Appointments</a>
+        </li>
+        <li routerLink="/about" routerLinkActive="menu-text">
+          <a>About</a>
+        </li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul *ngIf="!authService.isLoggedIn()" class="menu">
+        <li routerLink="/login" routerLinkActive="menu-text">
+          <a>Login</a>
+        </li>
+      </ul>
+      <ul *ngIf="authService.isLoggedIn()" class="menu">
+        <li>
+          Logged in as <strong>{{authService.getUserName()}}</strong>
+        </li>
+        <li (click)="authService.logout()"  class="menu-text" routerLink="/home">
+          <a class="button">Logout</a>
+        </li>
+      </ul>
+    </div>
+</div>
+<br>
+<div class="main">
+  <div class="row">
+    <div class="large-12 columns">
+      <h4 class="subheader"> Angular 2 Security Example Application</h4>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="row expanded">
+    <div class="small-12 medium-3 large-4 columns">
+      Angular 2 Security Example Application
+      <small> 2016 </small>
+    </div>
+  </div>
+</footer>

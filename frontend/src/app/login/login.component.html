@@ -1,0 +1,12 @@
+<div *ngIf="!authService.isLoggedIn()">
+  <h3>Log into your Account</h3>
+
+  <a class="button" (click)="login()">
+    Login
+  </a>
+</div>
+<div *ngIf="authService.isLoggedIn()">
+  <a class="button" (click)="authService.logout()">
+    Logout
+  </a>
+</div>
